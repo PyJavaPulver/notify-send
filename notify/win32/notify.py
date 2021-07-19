@@ -99,9 +99,9 @@ class Win32Notification:
                 title,
             ),
         )
-        time.sleep(10)
-        DestroyWindow(self.hwnd)
-        UnregisterClass(classAtom, hinst)
+        #time.sleep(10)
+        #DestroyWindow(self.hwnd)
+        #UnregisterClass(classAtom, hinst)
 
     def OnDestroy(self, hwnd, msg, wparam, lparam):
         nid = (self.hwnd, 0)
