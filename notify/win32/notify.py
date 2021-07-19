@@ -31,6 +31,8 @@ import sys
 import os
 import struct
 import time
+import random
+import string
 
 
 class Win32Notification:
@@ -52,7 +54,8 @@ class Win32Notification:
         # Register the Window class.
         wc = WNDCLASS()
         hinst = wc.hInstance = GetModuleHandle(None)
-        wc.lpszClassName = "PythonTaskbar"
+        char_set = string.ascii_uppercase + string.digits
+        wc.lpszClassName = ''.join(random.sample(char_set*6, 6)) # set random class name
         wc.lpfnWndProc = message_map  # could also specify a wndproc.
         classAtom = RegisterClass(wc)
         # Create the Window.
@@ -99,9 +102,9 @@ class Win32Notification:
                 title,
             ),
         )
-        time.sleep(10)
-        DestroyWindow(self.hwnd)
-        UnregisterClass(classAtom, hinst)
+        time.sleep(5)
+        #DestroyWindow(self.hwnd)
+        #UnregisterClass(classAtom, hinst)
 
     def OnDestroy(self, hwnd, msg, wparam, lparam):
         nid = (self.hwnd, 0)
